@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Lukasz Kolacz on 03.06.2017.
@@ -21,4 +22,6 @@ public interface UserRepository extends CrudRepository<User, Integer>{
 
 //    PAGINACJA:
     Page<User> findAll(Pageable pageable);
+
+    Optional<User> findByUsername(String username);
 }
