@@ -121,31 +121,31 @@ public class MainController {
 //
 //    }
 //    --------------------------------- paginacja ---------------------------------------------------------------
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
-    @ResponseBody
-    public String user() {
-
-        Page<User> currentPage = userRepository.findAll(new PageRequest(0, 4));
-        StringBuilder builder = new StringBuilder();
-        for (User user : currentPage.getContent()) {
-            builder.append("Username: " + user.getUsername() + "<br>");
-        }
-
-        builder.append("<br> Ilość stron: " + currentPage.getTotalPages());
-        builder.append("<br> Czy zawiera następną stronę? " + currentPage.hasNext());
-        builder.append("<br> Czy zawiera poprzednia stronę? " + currentPage.hasPrevious());
-
-        currentPage=userRepository.findAll(currentPage.nextPageable());
-
-        builder.append("<br><br><br><br>");
-
-        for (User user : currentPage.getContent()) {
-            builder.append("Username: " + user.getUsername() + "<br>");
-        }
-
-        return builder.toString();
-
-    }
+//    @RequestMapping(value = "/user", method = RequestMethod.GET)
+//    @ResponseBody
+//    public String user() {
+//
+//        Page<User> currentPage = userRepository.findAll(new PageRequest(0, 4));
+//        StringBuilder builder = new StringBuilder();
+//        for (User user : currentPage.getContent()) {
+//            builder.append("Username: " + user.getUsername() + "<br>");
+//        }
+//
+//        builder.append("<br> Ilość stron: " + currentPage.getTotalPages());
+//        builder.append("<br> Czy zawiera następną stronę? " + currentPage.hasNext());
+//        builder.append("<br> Czy zawiera poprzednia stronę? " + currentPage.hasPrevious());
+//
+//        currentPage=userRepository.findAll(currentPage.nextPageable());
+//
+//        builder.append("<br><br><br><br>");
+//
+//        for (User user : currentPage.getContent()) {
+//            builder.append("Username: " + user.getUsername() + "<br>");
+//        }
+//
+//        return builder.toString();
+//
+//    }
 //    ------------------------------------ mailService ---------------------------------------
 
     @RequestMapping(value = "/mail/{cash}", method = RequestMethod.GET)
