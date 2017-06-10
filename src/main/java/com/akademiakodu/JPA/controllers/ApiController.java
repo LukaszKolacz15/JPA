@@ -72,4 +72,42 @@ public class ApiController {
         userRepository.save(user);
         return new ResponseEntity(HttpStatus.OK);
     }
+
+
+
+//    @RequestMapping(value = "/api/user", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity saveUser(@RequestBody User user, @RequestHeader("Access-Password")String key){
+//
+//        if (!key.equals("akademiakodujestfajna")) {
+//            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+//        }
+//        if (user==null) {
+//            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+//        }
+//        Optional<User> userLocal = userRepository.findByUsername(user.getUsername());
+//        if(userLocal.isPresent()){
+//            return new ResponseEntity("Username is not free", HttpStatus.BAD_REQUEST);
+//        }
+//        userRepository.save(user);
+//        return new ResponseEntity(HttpStatus.OK);
+//    }
+
+    @RequestMapping(value = "/api/user", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity saveUser(@RequestBody User user, @RequestHeader("Access-Password")String key){
+        if(!key.equals("akademiakodujestfajna")){
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+        if(user == null) {
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+
+        Optional<User> userLocal = userRepository.findByUsername(user.getUsername());
+        if(userLocal.isPresent()){
+            return new ResponseEntity("Username is not free", HttpStatus.BAD_REQUEST);
+        }
+
+        userRepository.save(user);
+        return new ResponseEntity(HttpStatus.OK);
+
+    }
 }
